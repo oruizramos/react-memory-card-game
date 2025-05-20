@@ -1,110 +1,117 @@
-Rick and Morty Memory Game (React + TypeScript)
-This is a memory card game built using React and TypeScript. The game dynamically fetches characters from the Rick and Morty API and challenges users to click each character only once without repeating. If a card is clicked twice, the game resets. The score and best score are tracked, and the game includes win/lose feedback.
+# **React/Typescript Memory Card Game**
 
-This project was built as a hands-on way to practice component architecture, TypeScript with API data, dynamic rendering, and game logic using React state and hooks. It’s a self-contained frontend-only application focused on interactivity, user feedback, and data-driven UI behavior.
+Try it live: https://react-typescript-memory-card-game.netlify.app/
 
-Live Demo
-• Play the game on Netlify
-• View the repository on GitHub
+This is a lightweight memory card game built using React and TypeScript. It fetches character data from the Rick and Morty API and challenges users to click each character only once per session. If a player clicks the same character twice, the game resets. Scores are tracked in real time, and the interface gives clear feedback when you win or lose. This is was an assignment/practice project for The Odin Project Full Stack curriculum (https://www.theodinproject.com/lessons/node-path-react-new-memory-card). The idea was to play around a similar project. 
 
-Project Goals & Design
-The goal of this project was to apply key concepts in React and TypeScript by:
+In order to keep practicing Typescript, I decided to incorporate it into this project as well. It’s a self-contained frontend app with dynamic rendering, functional interactivity, and stateless API usage — designed to put React hooks, components, and TypeScript to practical use.
 
-• Creating a simple but interactive game with dynamic state updates
-• Using real API data to generate a unique UI experience each session
-• Managing game logic (win/lose, score, shuffling) using useState and useEffect
-• Applying TypeScript interfaces to keep the code predictable and error-resistant
-• Keeping the UI modular and clean with clear separation of concerns
+## **What This Project Covers**
 
-Each element of the game — character cards, score tracking, game feedback — is built as part of a focused component structure.
 
-Features
-• Displays 18 unique Rick and Morty characters from the API
-• Shuffles character cards after each successful click
-• Tracks current score and best score in real time
-• Win condition when all characters are clicked uniquely
-• Lose condition when a character is clicked twice
-• Visual feedback messages for both win and lose outcomes
-• Single-click game reset with score and board refresh
-• Fully typed with TypeScript interfaces and strict props
+-This project was built to apply and reinforce key frontend skills, including:
+-React state and effect hooks to manage gameplay logic and UI updates.
+-Component-based architecture for a clean and modular codebase.
+-Typed API integration using TypeScript interfaces to safely consume external data.
+-Conditional rendering for feedback and game-state UI.
+-Array manipulation for randomization (Fisher-Yates shuffle).
+-Prop typing and strict typing across components and event handlers.
+-The goal wasn't just to build a game, but to practice writing predictable, testable UI logic using real-world data in a React + TypeScript setting.
 
-Tech Stack
-• React (functional components with hooks)
-• TypeScript for static typing and improved DX
-• Vite or CRA for local dev and build setup
-• CSS for basic layout and style customization
-• Rick and Morty API for live character data
+## **Features**
 
-Folder Structure
-bash
-Copy
-Edit
-src/
-├── api/
-│   └── rickAndMorty.ts       # API call to fetch character data
-├── components/
-│   ├── Card.tsx              # Individual character card component
-│   └── CardGrid.tsx          # Grid of character cards
-├── App.tsx                   # Main game logic and layout
-├── app.css                   # Styling for layout and messages
-TypeScript Usage Highlights
-• Defined a Character interface for consistent character data structure
-• All React component props are explicitly typed
-• API function and array manipulation (e.g., shuffleArray) are type-safe
-• Event handlers such as handleCardClick use typed parameters
-• State variables are strictly typed to avoid bugs in logic
+-Dynamically fetches and displays 18 random Rick and Morty characters on each session.
+-Click-based memory logic: click each character once — clicking twice ends the game.
+-Character cards are reshuffled after each correct click.
+-Real-time score tracking with a high score saved during the session.
+-Feedback messages for both win and loss states.
+-One-click Reset Game functionality.
+-Built entirely with React functional components, using hooks and strict TypeScript typings.
 
-ts
-Copy
-Edit
-interface Character {
+## **Tech Stack**
+
+-React with functional components and hooks (useState, useEffect)
+-TypeScript for static typing and improved developer experience
+-Vite for lightweight dev/build setup
+-Rick and Morty API for live character data
+-CSS for simple, readable styling
+
+## **How It Works**
+
+-The app loads a list of characters from the API on mount using useEffect.
+-Characters are stored in state and randomized using a Fisher-Yates shuffle.
+-Every time a card is clicked:
+-If it hasn’t been clicked before: score increases, card list reshuffles.
+-If it has: the game is lost, and the score resets.
+-If the player successfully clicks all characters without repetition: they win.
+-All state (score, best score, clicked IDs, win/loss flags) is handled in React.
+-UI feedback (win/lose messages, score tracking) is conditionally rendered based on state.
+
+## 📁 Project Structure
+
+| Path                          | Purpose                                 |
+|-------------------------------|-----------------------------------------|
+| `src/api/rickAndMorty.ts`     | Fetches character data from the API     |
+| `src/components/Card.tsx`     | Renders individual character card       |
+| `src/components/CardGrid.tsx` | Displays the grid of cards              |
+| `src/App.tsx`                 | Main game component and logic           |
+| `src/app.css`                 | App styles                              |
+| `src/main.tsx`                | Entry point                             |
+
+
+## **TypeScript Highlights**
+
+-TypeScript is used throughout the app to enforce structure and improve clarity:
+-A Character interface defines the structure of the API response:
+
+_interface Character {
   id: number;
   name: string;
   image: string;
-}
-ts
-Copy
-Edit
-const handleCardClick = (id: number): void => {
-  // Logic for checking duplicates and updating state
-}
-Possible Future Enhancements
-• Add animations to card clicks and shuffle transitions
-• Store best score in localStorage to persist across sessions
-• Add difficulty levels with more characters or timers
-• Improve styling with a responsive grid and smoother feedback
+}_
 
-Getting Started
-1. Clone the repository
+-Component props are strictly typed, ensuring better editor support and type safety.
+-Game logic handlers like handleCardClick use typed arguments and return types:
 
-bash
-Copy
-Edit
-git clone https://github.com/your-username/rick-and-morty-memory-game.git
+_const handleCardClick = (id: number): void => { ... }_
+
+=API fetching, array shuffling, and state updates all benefit from TypeScript’s predictability.
+
+## **Getting Started**
+
+
+1.- Clone the repository:
+
+
+_git clone https://github.com/your-username/rick-and-morty-memory-game.git
 cd rick-and-morty-memory-game
-2. Install dependencies
+_
+2.- Install dependencies:
 
-bash
-Copy
-Edit
-npm install
-3. Start the development server
+_npm install_
 
-bash
-Copy
-Edit
-npm run dev
-# or
-npm start
-4. Build for production
+3.- Run the development server:
 
-bash
-Copy
-Edit
-npm run build
-Author
+_npm run dev_
+
+4.- Build for production:
+
+_npm run build_
+
+
+## 🧩 **Ideas for Future Enhancements**
+
+-Save best score using localStorage
+-Add animations or transitions to card flips/shuffles
+-Add difficulty levels or game modes
+-Use responsive layout for mobile-friendliness
+-Improve UI with better styling or sound effects
+
+## 👤 Author
+
 Omar Alejandro Ruiz Ramos
 📧 omarruizramos@gmail.com
 
-License
+## 📄 License
+ 
 This project is licensed under the MIT License.
